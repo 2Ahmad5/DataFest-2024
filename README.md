@@ -1,44 +1,73 @@
-# DataFest-2024: Student Performance Clustering
+# DataFest 2024 Winning Project: Student Performance Clustering
+This project analyzes student performance data to identify distinct clusters of students based on their learning behaviors and engagement metrics.  The goal is to provide insights into student learning patterns to improve pedagogical strategies and support systems. The project was completed by Ahbab Abeer, Ahmad Choudhary, Darren Li, and Chirag Biswas, with assistance from Islam Tayeb for data processing.
 
 
-
-## Project Overview
-
-This project performs K-Means clustering on student data to identify distinct groups based on their performance metrics and engagement with learning materials.  The analysis uses data from three sources: student performance scores, video viewing habits, and page interaction data. The goal is to gain insights into student learning patterns and potentially inform targeted interventions.
-
-
-## Main Features and Functionality
-
-The Jupyter Notebook (`src/main.ipynb`) implements the following functionalities:
-
-* **Data Loading:** Loads student performance data, video viewing data, and page interaction data from CSV files.
-* **Data Preprocessing:**  Selects relevant features for clustering (average cost, average intrinsic motivation, average expectancy).  No explicit scaling is performed, although the code contains commented-out lines suggesting MinMaxScaler was considered.
-* **K-Means Clustering:** Applies the K-Means algorithm to cluster students into groups based on the chosen features. The optimal number of clusters (3) is determined visually using the elbow method (plotting within-cluster sum of squares (WCSS) against the number of clusters).
-* **3D Visualization:** Creates a 3D scatter plot to visualize the clusters in the feature space (average cost, average intrinsic motivation, average expectancy).
-* **Cluster Analysis:** Calculates the average values of various performance metrics and engagement measures for each cluster.  This includes the number of students in each cluster, average performance scores across several dimensions, average video viewing time, and average page interaction metrics (number of reviewed pages, number of retries, and sum of engaged time).
-* **Output:** Presents the average metrics for each cluster, providing a comparative analysis of the student groups identified.
+<div align="center">
+<img src="https://github.com/2Ahmad5/DataFest-2024/blob/main/data/image-1739221194746.png?raw=true" alt="image-1739221194746.png" />
+</div>
 
 
+## Features
+* **K-Means Clustering:** Employs the K-Means algorithm to group students into distinct clusters based on key performance indicators.
+* **Data Visualization:** Generates 3D scatter plots to visualize the clusters in three-dimensional space, allowing for a better understanding of cluster characteristics.
+* **Data Aggregation:** Aggregates various data points (average attempts, EOC scores, engagement metrics, page views) per cluster to understand each group’s traits.
+* **Student Identification:**  Provides the ability to identify the individual student IDs associated with each cluster.
+
+## Usage
+This project is implemented as a Jupyter Notebook.  To run the notebook:
+
+1. Ensure you have the necessary dependencies installed (see below).
+2. Clone the repository.
+3. Navigate to the `src` directory.
+4. Open `main.ipynb` in Jupyter Notebook or JupyterLab.
+5. Execute the cells sequentially.
+
+## Installation
+1.  Clone the repository:
+    ```bash
+    git clone <repository_url>
+    ```
+2.  Create a virtual environment (recommended):
+    ```bash
+    python3 -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+    ```
+3. Install the required packages:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## Technologies Used
+* **Python:** The primary programming language for data analysis and manipulation.
+* **Jupyter Notebook:** An interactive computing environment used for creating and sharing the analysis.
+* **NumPy:**  Provides support for large, multi-dimensional arrays and matrices.  Used for numerical computations.
+* **Pandas:** Provides high-performance, easy-to-use data structures and data analysis tools. Used for data manipulation and cleaning.
+* **Matplotlib:** Used for creating static, interactive, and animated visualizations in Python. Used to generate the 3D scatter plots.
+* **Scikit-learn (sklearn):** A machine learning library.  The `KMeans` clustering algorithm is from this library.
+* **MinMaxScaler (from sklearn.preprocessing):** Used for feature scaling in the data preprocessing step (although it was commented out in the provided code).
+
+## Statistical Analysis
+The project employs K-Means clustering to segment students into groups based on their performance on various metrics.  The input data includes:
+
+* `avg_attempts`: Average number of attempts per question.
+* `eoc_crct/poss`: Ratio of correct answers to total possible answers on end-of-course (EOC) assessments.
+* `eoc_crct/atmp`: Ratio of correct answers to total attempts on EOC assessments.
+* `avg_cost`: Average cost (likely related to cognitive load or effort).
+* `avg_expectance`: Average expectancy (likely related to student perceived success rate).
+* `avg_intrinsic`: Average intrinsic motivation.
+* `avg_utility`: Average utility (likely related to perceived usefulness).
+* `num_reviewed`: Number of pages/resources reviewed.
+* `num_retry`: Number of retry attempts.
+* `Sum engaged`: Total engagement time.
 
 
-## Data Techniques
+The K-Means algorithm iteratively assigns data points to clusters to minimize the within-cluster sum of squares (WCSS). The optimal number of clusters was determined using the elbow method (although the ElbowVisualizer code is commented out).  The resulting clusters are then visualized using 3D scatter plots, showing the distribution of students across the `avg_cost`, `avg_intrinsic`, and `avg_expectance` dimensions.  The average values of all features are then calculated for each cluster, providing a summary of each cluster's characteristics. Finally, individual student IDs are assigned to their respective clusters allowing further targeted analysis.
 
-This project employs the following data analysis techniques:
+## Dependancies
+To install the python libraries used in the project, you'll need to have Python 3 installed.  Then, use pip to install each package individually:
 
-* **Data Loading and Preprocessing:**  Raw data from three CSV files (student performance, video views, page interactions) is loaded using Pandas.  Feature selection focuses on `average cost`, `average intrinsic motivation`, and `average expectancy` for clustering.  While MinMaxScaler was considered, no explicit data scaling is currently implemented. Missing value handling and further preprocessing steps (e.g., outlier detection) are not explicitly detailed.
+```bash
+pip install numpy pandas matplotlib scikit-learn
+```
 
-* **K-Means Clustering:** The K-Means algorithm from scikit-learn is used to cluster students based on the selected features.  The number of clusters (k=3) is determined visually using the elbow method by observing the within-cluster sum of squares (WCSS).
-
-* **Cluster Analysis:** Descriptive statistics (mean, count) are calculated for each cluster to characterize the student groups identified.  These statistics include average performance scores, video viewing time, and page interaction metrics.
-
-* **Data Visualization:** A 3D scatter plot using Matplotlib visualizes the clusters in the three-dimensional feature space.
-
-
-## Tech Stack
-
-* **NumPy:** For numerical computing.
-* **Pandas:** For data manipulation and analysis.
-* **Matplotlib:** For creating visualizations.
-* **Scikit-learn:** For the K-Means clustering algorithm.
-
-
+*README.md was made with [Etchr](https://etchr.dev)*
