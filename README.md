@@ -1,4 +1,4 @@
-# DataFest 2024 Winning Project: Student Performance Clustering
+# DataFest 2024: Student Performance Clustering
 This project analyzes student performance data to identify distinct clusters of students based on their learning behaviors and engagement metrics.  The goal is to provide insights into student learning patterns to improve pedagogical strategies and support systems. The project was completed by Ahbab Abeer, Ahmad Choudhary, Darren Li, and Chirag Biswas, with assistance from Islam Tayeb for data processing.
 
 
